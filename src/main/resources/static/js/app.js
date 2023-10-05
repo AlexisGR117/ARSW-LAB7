@@ -3,17 +3,22 @@ $(function() {
     Application = (function () {
         var authorName = "";
         var blueprintsAuthor = [];
-        var module = apiclient;
+        var module = apimock;
         var canvas = $("#canvas")[0];
         var context = canvas.getContext("2d");
         var currentBlueprint = null;
 
         function init() {
-            if(window.PointerEvent && currentBlueprint != null) {
-                canvas.addEventListener("pointerdown", function(event){
-                    alert('pointerdown at '+event.pageX+','+event.pageY);
+            if(window.PointerEvent) {
+                canvas.addEventListener("pointerdown", function(event) {
+                    paintLine(Math.round(event.offsetX), Math.round(event.offsetY));
                 });
             }
+        }
+
+        function paintLine(finalX, finalY) {
+            context.lineTo(finalX, finalY);
+            context.stroke();
         }
 
         function changeAuthorName(newName) {
@@ -58,13 +63,12 @@ $(function() {
         function openBlueprint(authorName, blueprintName) {
             module.getBlueprintsByNameAndAuthor(authorName, blueprintName, function (blueprint) {
                 currentBlueprint = blueprint;
-                var points = blueprint.points;
+                var points = currentBlueprint.points;
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 context.beginPath();
-                for (var i = 0; i < points.length - 1; i++) {
-                    context.moveTo(points[i].x, points[i].y);
-                    context.lineTo(points[i+1].x, points[i+1].y);
-                    context.stroke();
+                context.moveTo(points[0].x, points[0].y);
+                for (var i = 0; i < points.length; i++) {
+                    paintLine(points[i].x, points[i].y);
                 }
                 $("#name-blueprint").text(blueprintName);
             });

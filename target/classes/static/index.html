@@ -35,9 +35,19 @@
                 </table>
                 <h3>Total user points: <span id="total-points">0</span></h3>
             </div>
-            <div id="current-blueprint" class="col-md-6">
-                <h3>Current blueprint: <span id="name-blueprint"></span></h3>
+            <div id="current-blueprint" class="col-md-6" style="text-align: center;">
+                <h3 style="align-self: left;">Current blueprint: <span id="name-blueprint"></span></h3>
                 <canvas id="canvas" width="500" height="500" style="border: 1px solid #000000;"></canvas>
+                <div class="row">
+                    <div class="col-md-6" style="text-align: center;">
+                        <button type="button" class="btn btn-outline-secondary"
+                                onclick="">Save/Update</button>
+                    </div>
+                    <div class="col-md-6" style="text-align: center;">
+                        <button type="button" class="btn btn-outline-secondary"
+                                onclick="">Delete</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

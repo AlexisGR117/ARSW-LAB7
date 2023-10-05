@@ -32,7 +32,8 @@ apimock=(function(){
 		},
 
 		updateBlueprint:function(authname,bpname,blueprint) {
-            mockdata[authname].find(function(e){return e.name===bpname}).
+		    actualBlueprint = mockdata[authname].find(function(e){return e.name===bpname});
+            actualBlueprint.points = blueprint.points;
 		}
 
 	}	

@@ -29,7 +29,13 @@ apimock=(function(){
 			callback(
 				mockdata[authname].find(function(e){return e.name===bpname})
 			);
+		},
+
+		updateBlueprint:function(authname,bpname,blueprint) {
+		    actualBlueprint = mockdata[authname].find(function(e){return e.name===bpname});
+            actualBlueprint.points = blueprint.points;
 		}
+
 	}	
 
 })();
