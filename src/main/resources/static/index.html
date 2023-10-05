@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Blueprints</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" />
+    <script src="js/apimock.js"></script>
+    <script src="js/apiclient.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body style="font-family: 'Toms Handwritten Regular', cursive;">
+    <div class="container">
+        <div class="row">
+            <div id="get-blueprint" class="col-md-8">
+                <h1>Blueprints</h1>
+                <label for="name-author" style="margin: 10px 0; margin-right: 40px;">Author</label>
+                <input type="text" id="name-author" name="nombre" style="margin: 10px 0; margin-right: 40px">
+                <button type="button" class="btn btn-outline-secondary" style="margin: 10px 0;"
+                        onclick="Application.getBlueprintsByAuthor($('#name-author').val())">Get blueprints</button>
+            </div>
+        </div>
+        <div id="blueprints-author" class="row">
+            <div id="blueprints" class="col-md-6">
+                <h3 id="author"></h3>
+                <table id="table-blueprints" class="table">
+                    <tr>
+                        <td>Blueprint name</td>
+                        <td>Number of points</td>
+                        <td>Open</td>
+                    </tr>
+                </table>
+                <h3>Total user points: <span id="total-points">0</span></h3>
+            </div>
+            <div id="current-blueprint" class="col-md-6">
+                <h3>Current blueprint: <span id="name-blueprint"></span></h3>
+                <canvas id="canvas" width="500" height="500" style="border: 1px solid #000000;"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
