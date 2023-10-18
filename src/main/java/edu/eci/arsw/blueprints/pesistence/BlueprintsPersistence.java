@@ -50,4 +50,5 @@ public interface BlueprintsPersistence {
      */
     void updateBlueprint(String author, String bpname, Blueprint bpUpdate) throws BlueprintNotFoundException;
 
+    void deleteBlueprint(String author, String bpname) throws BlueprintNotFoundException;
 }

@@ -67,10 +67,21 @@ public class BlueprintAPIController {
     public ResponseEntity<?> manejadorPutBlueprint(@PathVariable("author") String author, @PathVariable("bpname") String bpname, @RequestBody Blueprint bp) {
         try {
             blueprintsServices.updateBlueprint(author, bpname, bp);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (BlueprintNotFoundException e) {
             Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @DeleteMapping(path = "/{author}/{bpname}")
+    public ResponseEntity<?> manejadorDeleteBlueprint(@PathVariable("author") String author, @PathVariable("bpname") String bpname) {
+        try {
+            blueprintsServices.deleteBlueprint(author, bpname);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (BlueprintNotFoundException e) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }
